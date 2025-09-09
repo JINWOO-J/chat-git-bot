@@ -12,6 +12,9 @@ import http.client
 from dataclasses import dataclass, asdict
 from typing import List, Tuple, Optional, Dict
 
+
+
+
 CODE_FENCE_PAT = re.compile(r"^(\s*)(`{3,}|~{3,})(.*)$")
 HEADING_PAT = re.compile(r"^(#{1,6})\s*(.*)$")
 LINK_PAT = re.compile(r"!?\[([^\]]*)\]\(([^)]+)\)")
@@ -21,6 +24,8 @@ LIST_MARKER_PAT = re.compile(r"^(\s*)([-+*]|\d+\.)\s+")
 TABLE_LINE_PAT = re.compile(r"^\s*\|.*\|\s*$")
 CRLF_PAT = re.compile(r"\r\n")
 
+
+
 @dataclass
 class Issue:
     file: str
@@ -29,6 +34,12 @@ class Issue:
     code: str
     message: str
     context: str
+
+def get_md_files(path: str) -> List[str]:
+    if os.path.isdir(path):
+        return [os.path.join(path, f) for f in os.listdir(path) if is_markdown_file(f)]
+    return [path]
+    
 
 def is_markdown_file(path: str) -> bool:
     return os.path.splitext(path)[1].lower() in {".md", ".markdown", ".mdown", ".mkdn"}
