@@ -33,7 +33,7 @@ class Issue:
     col: int
     code: str
     message: str
-    context: str
+    context: str    
 
 def get_md_files(path: str) -> List[str]:
     if os.path.isdir(path):
