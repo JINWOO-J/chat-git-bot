@@ -197,6 +197,7 @@ def check_file(path: str, max_len: int, check_links: bool) -> List[Issue]:
             if cnt != exp:
                 issues.append(Issue(path, len(lines), 1, "W-TABLEPIPES", f"테이블 블록의 파이프 수 불일치(기대 {exp}, 실제 {cnt}).", ""))
 
+
     # 선택적: 외부 링크 HEAD 검사
     if check_links:
         issues.extend(check_http_links(path, lines))
