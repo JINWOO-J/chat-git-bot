@@ -45,6 +45,12 @@ def is_hidden_file(path: str) -> bool:
     return os.path.basename(path).startswith(".")
 
 
+def is_ignored(path: str, ignore_patterns: List[str]) -> bool:
+    return any(fnmatch.fnmatch(path, pat) for pat in ignore_patterns)
+
+def is_markdown_file(path: str) -> bool:
+    return os.path.splitext(path)[1].lower() in {".md", ".markdown", ".mdown", ".mkdn"}
+
 
 def is_dot_file(path: str) -> bool:
     return os.path.basename(path).startswith(".")
