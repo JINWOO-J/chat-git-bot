@@ -23,6 +23,13 @@ TRAILING_SPACE_PAT = re.compile(r"[ \t]+$")
 LIST_MARKER_PAT = re.compile(r"^(\s*)([-+*]|\d+\.)\s+")
 TABLE_LINE_PAT = re.compile(r"^\s*\|.*\|\s*$")
 CRLF_PAT = re.compile(r"\r\n")
+DOT_FILE_PAT = re.compile(r"^\.")
+ALL_FILE_PAT = re.compile(r"^.*$")
+MARKDOWN_FILE_PAT = re.compile(r"\.md$")
+MARKDOWN_FILE_PAT = re.compile(r"\.markdown$")
+MARKDOWN_FILE_PAT = re.compile(r"\.mdown$")
+MARKDOWN_FILE_PAT = re.compile(r"\.mkdn$")
+
 
 
 
@@ -271,6 +278,8 @@ def main():
     parser.add_argument("--max-line-length", type=int, default=120, help="허용 줄 길이(기본 120)")
     parser.add_argument("--check-links", action="store_true", help="HTTP(S) 링크에 대해 HEAD 요청으로 확인(느릴 수 있음)")
     parser.add_argument("--json", action="store_true", help="JSON 형식으로 결과 출력")
+    parser.add_argument("--verbose", action="store_true", help="상세 출력")
+    parser.add_argument("--version", action="version", version="%(prog)s 1.0")
     args = parser.parse_args()
 
     files = iter_md_files(args.paths, args.ignore)
