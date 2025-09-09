@@ -23,6 +23,13 @@ TRAILING_SPACE_PAT = re.compile(r"[ \t]+$")
 LIST_MARKER_PAT = re.compile(r"^(\s*)([-+*]|\d+\.)\s+")
 TABLE_LINE_PAT = re.compile(r"^\s*\|.*\|\s*$")
 CRLF_PAT = re.compile(r"\r\n")
+DOT_FILE_PAT = re.compile(r"^\.")
+ALL_FILE_PAT = re.compile(r"^.*$")
+MARKDOWN_FILE_PAT = re.compile(r"\.md$")
+MARKDOWN_FILE_PAT = re.compile(r"\.markdown$")
+MARKDOWN_FILE_PAT = re.compile(r"\.mdown$")
+MARKDOWN_FILE_PAT = re.compile(r"\.mkdn$")
+
 
 
 
