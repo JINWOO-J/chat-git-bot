@@ -39,7 +39,9 @@ def get_md_files(path: str) -> List[str]:
     if os.path.isdir(path):
         return [os.path.join(path, f) for f in os.listdir(path) if is_markdown_file(f)]
     return [path]
-    
+
+def is_ignored(path: str, ignore_patterns: List[str]) -> bool:
+    return any(fnmatch.fnmatch(path, pat) for pat in ignore_patterns)
 
 def is_markdown_file(path: str) -> bool:
     return os.path.splitext(path)[1].lower() in {".md", ".markdown", ".mdown", ".mkdn"}
