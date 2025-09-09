@@ -40,6 +40,12 @@ def get_md_files(path: str) -> List[str]:
         return [os.path.join(path, f) for f in os.listdir(path) if is_markdown_file(f)]
     return [path]
 
+
+def is_hidden_file(path: str) -> bool:
+    return os.path.basename(path).startswith(".")
+
+
+
 def is_dot_file(path: str) -> bool:
     return os.path.basename(path).startswith(".")
 
