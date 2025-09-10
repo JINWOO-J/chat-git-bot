@@ -1,0 +1,2 @@
+This is a line with trailing spaces.
+This is a very long line that exceeds the default maximum line length of 120 characters. It should trigger a warning because it is definitely longer than 120 characters now.
