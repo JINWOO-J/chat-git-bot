@@ -33,7 +33,6 @@ MARKDOWN_FILE_PAT = re.compile(r"\.mkdn$")
 
 
 
-
 @dataclass
 class Issue:
     file: str
@@ -317,7 +316,21 @@ def main():
     parser.add_argument("--no-force", action="store_true", help="무시 패턴 무시")
     parser.add_argument("--no-ignore", action="store_true", help="무시 패턴 무시")
     parser.add_argument("--no-color", action="store_true", help="색상 비활성화")
+    parser.add_argument('--plugins', action='store_true', help='Run all loaded plugins')
+    
+
     args = parser.parse_args()
+
+    # Load and run plugins if specified
+    plugin_manager = PluginManager('plugins')
+    plugin_manager.load_plugins()
+    with open(args.markdown_file, 'r') as file:
+        markdown_content = file.read()
+
+    if args.plugins:
+        plugin_manager.run_plugins(markdown_content)
+    else:
+        print("Linting without plugins...")  # 기본 린팅 로직 추가
 
     files = iter_md_files(args.paths, args.ignore)
     all_issues: List[Issue] = []
